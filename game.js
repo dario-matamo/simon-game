@@ -44,7 +44,8 @@ function animatePress(color) {
 }
 
 //Start game when any key is pressed
-$(document).keypress(function (event) {
+$(document).keypress(function () {
+    console.log("gola");
 	if (!isStarted) {
 		$("#level-title").text("Level " + level);
 		nextSequence();
@@ -62,6 +63,7 @@ function checkAnswer(currentLevel) {
 			}, 1000);
 		}
     } else {
+        restart();
         playSound("wrong");
         $("body").addClass("game-over");
         $("#level-title").text("Game Over. Press any key to restart" );
@@ -69,6 +71,14 @@ function checkAnswer(currentLevel) {
         setTimeout(function () {
             $("body").removeClass("game-over");            
         }, 200);
-
+        
+        
 	}
+}
+
+//Restart the game 
+function restart() {
+    level = 0;
+    gamePattern = [];
+    isStarted = false;
 }
